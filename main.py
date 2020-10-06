@@ -15,15 +15,26 @@ class Application(QWidget):
         #Create grid
         grid = QGridLayout()
 
-        button1 = QPushButton("One")
-        button2 = QPushButton("Two")
-        button3 = QPushButton("Three")
-        button4 = QPushButton("Last button")
+        buttons = ["AC", "C", "CE", "/",
+                   7, 8, 9, "*",
+                   4, 5, 6, "-",
+                   1, 2, 3, "+",
+                   0, ".", "="]
 
-        grid.addWidget(button1, 0, 0, 1, 1)
-        grid.addWidget(button2, 0, 1, 1, 1)
-        grid.addWidget(button3, 0, 2, 1, 1)
-        grid.addWidget(button4, 1, 0, 1, 2)
+        row = 0
+        col = 0
+
+        for button in buttons:
+            if col > 3:
+                col = 0
+                row += 1
+            if button == 0:
+                grid.addWidget(QPushButton(str(button)), row, col, 1, 2)
+                col += 1
+            else:
+                grid.addWidget(QPushButton(str(button)), row, col, 1, 1)
+
+            col += 1
 
         self.setLayout(grid)
 
